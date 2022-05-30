@@ -1,0 +1,25 @@
+#!/bin/bash
+ 
+NAME=$(basename "$0")
+TOOLCHAIN_BINDIR=external/x86_64-unknown-linux-gnu/bin
+
+echo "################################################################"
+echo "${TOOLCHAIN_BINDIR}/${NAME} $@"
+echo "################################################################"
+
+exec "${TOOLCHAIN_BINDIR}"/"${NAME}" "$@"
+
+#TOOLCHAIN_SYSROOT=external/x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu/sysroot
+#
+#_LD_PROGRAM=$(readlink -f ${TOOLCHAIN_SYSROOT}/lib/ld-linux-x86-64.so.2)
+#_LD_RPATH=$(dirname ${_LD_PROGRAM})
+#
+#echo "################################################################"
+#echo "${_LD_PROGRAM}"
+#echo "${_LD_RPATH}"
+#echo "################################################################"
+#
+#exec "${TOOLCHAIN_BINDIR}"/"${NAME}" \
+#    -Wl,--rpath=${_LD_RPATH} \
+#    -Wl,--dynamic-linker=${_LD_PROGRAM} \
+#    "$@"
